@@ -5,9 +5,11 @@
         "contao",
         "facebook",
         "connector",
+        "symfony",
+        "bundle"
         "events",
         "posts",
-        "galeries"
+        "galleries"
     ],
     "type": "contao-bundle",
     "license": "LGPL-3.0-or-later",
