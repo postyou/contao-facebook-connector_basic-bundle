@@ -1,6 +1,6 @@
 {
     "name": "postyou/contao-facebook-connector_basic-bundle",
-    "description": "Facebook Connector for Contao - Basic Version.",
+    "description": "Facebook Connector Symfony Bundle for Contao - Basic Version.",
     "keywords": [
         "contao",
         "facebook",
