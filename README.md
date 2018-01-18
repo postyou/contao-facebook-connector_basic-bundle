@@ -6,7 +6,7 @@ With this module you can easily synchronize Facebook posts with your Contao inst
 The module is splitten up into two versions. The basic version you can find here and a "Pro Version" with additional features.
 If you interested in the professional version, please contact us: https://www.postyou.de/contao-facebook-connector.html
 
-This is the symphony bundle for Contao 4. The version for Contao 3 you can find on https://github.com/postyou/contao-facebook-connector_basic
+This is the symfony bundle for Contao 4. The version for Contao 3 you can find on https://github.com/postyou/contao-facebook-connector_basic
 
 ## What's included
 
