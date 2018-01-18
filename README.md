@@ -1,6 +1,6 @@
 Contao Facebook Connector Bundle - Basic Version
 ============
-Facebook Connector for Contao - Basic Version
+Facebook Connector Symfony Bundle for Contao - Basic Version
 
 With this module you can easily synchronize Facebook posts with your Contao installation.
 The module is splitten up into two versions. The basic version you can find here and a "Pro Version" with additional features.
