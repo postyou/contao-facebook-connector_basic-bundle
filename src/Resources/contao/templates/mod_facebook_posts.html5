@@ -1,0 +1,12 @@
+<?php $this->extend('block_searchable'); ?>
+
+<?php $this->block('content'); ?>
+
+  <?php if (empty($this->posts)): ?>
+    <p class="empty"><?= $this->empty ?></p>
+  <?php else: ?>
+    <?= implode('', $this->posts) ?>
+    <?= $this->pagination ?>
+  <?php endif; ?>
+
+<?php $this->endblock(); ?>

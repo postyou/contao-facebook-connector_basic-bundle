@@ -1,0 +1,187 @@
+/*#ctrl_addPostsToNewsModule {
+	padding-top: 16px;
+	border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.ctrl_addPostsToNewsModule + .tl_pro_version {
+	padding-bottom: 16px;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+}*/
+
+.simple-modal .simple-modal-body {
+	padding: 5px 15px;
+	line-height: 2em;
+}
+
+.tl_info a.pro_version_link {
+	text-decoration: underline;
+}
+
+.tl_pro_version {
+	margin-top: 16px;
+}
+
+.autoSyncPostOptions .tl_tip,
+.ctrl_headlineType .tl_tip,
+.ctrl_headlineType {
+	height: auto;
+}
+
+.publishWrapper.w50, .downloadWrapper.w50 {
+	height: auto;
+}
+
+.publishWrapper,
+.downloadWrapper,
+#downloadGalleriesButton,
+#downloadEventsButton,
+#downloadEventsButton + .loginExplanation
+{
+	margin-left: 15px;
+	margin-right: 15px;
+	width: calc(50% - 30px) !important;
+}
+
+
+.downloadButton, .publishButton {
+	margin-top: 16px;
+	height: auto;
+}
+
+.loginExplanation {
+	height: auto;
+	margin-top: 10px;
+	float:left;
+}
+
+.loginExplanation + div {
+	float: left;
+	width: 100%;
+	margin-left: 15px;
+}
+
+.publishWrapper .loginExplanation + div {
+	margin-left: 0;
+}
+
+#synchronizeReport {
+	margin-top: 25px;
+}
+
+#synchronizeReport h2 {
+	margin-bottom: 10px;
+}
+
+#tl_ajaxBox .inside {
+	padding: 0 1em;
+}
+
+.neutral {
+	color: #4b85ba;
+}
+
+.success {
+	color: #77ac45;
+}
+
+.error {
+	color: #c33;
+}
+
+.deleted {
+	color: #D3863C;
+}
+
+input[disabled=""] + label, .disabled label {
+	color: rgba(0,0,0,0.5);
+}
+
+input[disabled=""] + label em {
+	color: rgba(0,0,0,1.0);
+}
+
+.disabled label em{
+	color: rgba(0,0,0,1);
+}
+
+#facebookLogin {
+	display:  inline-block;
+	background-color: #4267b2;
+	border-color: #4267b2;
+	color: #fff;
+	padding: 0.3em 0.5em;
+	background-image: none;
+	text-shadow: none;
+	margin-top: 10px;
+}
+
+#facebookLogin.tl_submit:hover, #facebookLogin.tl_submit:focus {
+	box-shadow: 0 0 3px #365899;
+	background-color: #365899;
+	border-color: #365899;
+}
+
+#facebookLogin.disabled,
+#facebookLogin.disabled:hover,
+#facebookLogin.disabled:focus {
+	background-color: #7f92b9;
+	border-color: #7f92b9;
+	color: rgba(255,255,255,0.7);
+	box-shadow: none;
+}
+
+.publishButton .tl_submit:after,
+.downloadButton .tl_submit:before {
+	content:"";
+	height: 12px;
+	width: 16px;
+	display: inline-block;
+	position: relative;
+	background-repeat: no-repeat;
+}
+
+.publishButton .tl_submit:after {
+	background-image: url(../img/arrow_right.png);
+	left: 7px;
+}
+
+.downloadButton .tl_submit:before {
+	background-image: url(../img/arrow_left.png);
+	padding-right:7px;
+}
+
+
+.publishButton .tl_submit.disabled:after,
+.downloadButton .tl_submit.disabled:before {
+	opacity:0.5;
+}
+
+.tl_submit.disabled,
+.tl_submit.disabled:hover {
+	color: #aaa;
+	box-shadow: none;
+	border-color: #d8d8d8;
+	cursor: default;
+}
+
+.reportTable {
+	margin-bottom: 16px;
+}
+
+.newsArchive, .calendarArchive, .autoSyncPostOptions, .autoSyncGalleryOptions {
+	margin-left: 30px;
+	display: none;
+}
+
+.tl_news-facebook-icon {
+	float: left;
+	margin-right: 10px;
+}
+
+.choose_galleries {
+	height: auto;
+	position: relative;
+	z-index: 2;
+}
+
+
