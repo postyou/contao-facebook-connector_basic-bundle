@@ -148,7 +148,7 @@ class FacebookPostList extends \ContentElement
                 }
 
                 // auf null setzen, da Template sonst Wert vom vorhergehenden uebernimmt
-                $objTemplate->imagePaths = null;
+                $objTemplate->images = null;
                 $objTemplate->imageSrcFacebook = null;
 
                 $images = array();
