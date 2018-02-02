@@ -313,43 +313,42 @@ class FbConnectorPostGet extends FbConnector
 
                             $imageSrc = $subAttachment['media']['image']['src'];
 
-                            $model->imageSrcFacebook = $this->addBlobData($model->imageSrcFacebook,
-                            $imageSrc);
+                            if (!strpos($imageSrc, '://external')) {
+                              if ($facebookSiteModel->saveAttachmentsToFilesystem && ) {
+                                  $fileName;
+                                  if ($subAttachment['type'] == 'share') {
+                                      $fileName = 'multi_share_'.$index;
+                                  } else {
+                                      $fileName = $subAttachment['target']['id'];
+                                  }
 
-                            if ($facebookSiteModel->saveAttachmentsToFilesystem && !strpos($imageSrc, '://external')) {
-                                $fileName;
-                                if ($subAttachment['type'] == 'share') {
-                                    $fileName = 'multi_share_'.$index;
-                                } else {
-                                    $fileName = $subAttachment['target']['id'];
-                                }
+                                  $pictureModel = $this->savePictureToFilesystem($post['id'],
+                                  $imageSrc, true,
+                                  $fileName,
+                                  $model->getFolderPath());
 
-                                $pictureModel = $this->savePictureToFilesystem($post['id'],
-                                $imageSrc, true,
-                                $fileName,
-                                $model->getFolderPath());
+                                  if (isset($pictureModel)) {
+                                      $model->multiSRC = $this->addBlobData($model->multiSRC,
+                                      $pictureModel->uuid);
+                                      $model->addSpecificData(array('orderSRC' => $model->multiSRC,
+                                      'multiSRC' => $model->multiSRC));
 
-                                if (isset($pictureModel)) {
-                                    $model->multiSRC = $this->addBlobData($model->multiSRC,
-                                    $pictureModel->uuid);
-                                    $model->addSpecificData(array('orderSRC' => $model->multiSRC,
-                                    'multiSRC' => $model->multiSRC));
-
-                                    if ($index === 0) {
-                                        $model->addSpecificData(array(
-                                              'addImage' => true,
-                                              'singleSRC' => $pictureModel->uuid,
-                                              'fullsize' => true,
-                                              'floating' => $facebookSiteModel->floating,
-                                            ));
-                                    }
-                                }
-                            } else {
+                                      if ($index === 0) {
+                                          $model->addSpecificData(array(
+                                                'addImage' => true,
+                                                'singleSRC' => $pictureModel->uuid,
+                                                'fullsize' => true,
+                                                'floating' => $facebookSiteModel->floating,
+                                              ));
+                                      }
+                                  }
+                              } else {
                                 $model->imageSrcFacebook = $this->addBlobData($model->imageSrcFacebook,
-                                    $queryArr['url'] ?: $post['full_picture']);
-                                $model->addSpecificData(array(
-                                    'floating' => $facebookSiteModel->floating
-                                ));
+                                $imageSrc);
+                                  $model->addSpecificData(array(
+                                      'floating' => $facebookSiteModel->floating
+                                  ));
+                              }
                             }
 
                             $model->save();
