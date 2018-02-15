@@ -34,8 +34,8 @@
     },
     "autoload" : {
       "psr-4": {
-          "Postyou\\ContaoFacebookConnectorBasicBundle\\" : "src/"
-      },
+            "Postyou\\ContaoFacebookConnectorBasicBundle\\" : "src/"
+        },
       "classmap": [
         "src/Resources/contao"
       ],

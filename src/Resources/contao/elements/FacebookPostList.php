@@ -156,7 +156,6 @@ class FacebookPostList extends \ContentElement
                 if ($facebookSiteModel->saveAttachmentsToFilesystem) {
                     $multiSRC = unserialize($postModels->current()->multiSRC);
 
-                    $images = array();
 
                     if (is_array($multiSRC)) {
                         foreach ($multiSRC as $uuid) {

@@ -314,7 +314,7 @@ class FbConnectorPostGet extends FbConnector
                             $imageSrc = $subAttachment['media']['image']['src'];
 
                             if (!strpos($imageSrc, '://external')) {
-                              if ($facebookSiteModel->saveAttachmentsToFilesystem && ) {
+                              if ($facebookSiteModel->saveAttachmentsToFilesystem) {
                                   $fileName;
                                   if ($subAttachment['type'] == 'share') {
                                       $fileName = 'multi_share_'.$index;

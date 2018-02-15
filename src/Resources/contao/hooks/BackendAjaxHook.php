@@ -58,7 +58,7 @@ class BackendAjaxHook extends \Backend
 
                 $this->loadData(ConnectionType::POST_GET, "getPostsFromSiteIdAndSaveInDb");
 
-                $url = \Controller::addToUrl('&reportTypePost=true&directionGet=true&rt='.self::getToken(), true,
+                $url = \Controller::addToUrl('&reportTypePost=true&directionGet=true&rt='.FbConnectorHelper::getToken(), true,
                     array(
                         'key',
                         'directionPublish',

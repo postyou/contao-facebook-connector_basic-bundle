@@ -14,7 +14,7 @@
 
 use Contao\DataContainer;
 use Contao\Dbafs;
-use postyou\FacebookPostsDeleteListModel;
+use Postyou\ContaoFacebookConnectorBasicBundle\FacebookPostsModel;
 
 $GLOBALS['TL_DCA']['tl_facebook_posts'] = array(
     'config' => array(
@@ -268,7 +268,7 @@ class tl_facebook_posts_basic extends \Backend
             time(), $dc->id);
 
         if (empty($dc->activeRecord->title)) {
-            $facebookPostsModel = \FacebookPostsModel::findById($dc->activeRecord->id);
+            $facebookPostsModel = FacebookPostsModel::findById($dc->activeRecord->id);
             $facebookPostsModel->title = StringUtil::substr($dc->activeRecord->postMessage, 70,
                 '...');
             $facebookPostsModel->save();
@@ -282,7 +282,7 @@ class tl_facebook_posts_basic extends \Backend
 
     public function onDelete($dc)
     {
-        $facebookPostModel = \FacebookPostsModel::findById($dc->activeRecord->id);
+        $facebookPostModel = FacebookPostsModel::findById($dc->activeRecord->id);
 
         $path = \Config::get('uploadPath') . '/facebook/posts/' . $facebookPostModel->postId;
 
