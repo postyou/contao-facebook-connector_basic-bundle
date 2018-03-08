@@ -375,6 +375,9 @@ class FbConnectorPostGet extends FbConnector
 
         $fileType = $this->getFileTypeFromUrl($imageSrc);
 
+        if (empty($fileType)) {
+          return;
+        }
 
         if ($isAttachment) {
             $picturePath = $postFolderPath . '/attachment_' . $attachmentId . $fileType;
@@ -447,7 +450,16 @@ class FbConnectorPostGet extends FbConnector
 
     private function getFileTypeFromUrl($imageSrc)
     {
-        return substr($imageSrc, strrpos($imageSrc, '.'), 4);
+        $filteredStr = substr($imageSrc, strrpos($imageSrc, '.') + 1);
+        $fileType = '';
+        for ($i = 0; $i < strlen($filteredStr); $i++) {
+          if ($filteredStr[$i] == '?' || $filteredStr[$i] == '&' || ctype_digit($filteredStr[$i])) {
+            break;
+          }
+          $fileType .= $filteredStr[$i];
+        }
+
+        return $fileType;
     }
 
     private function addBlobData($serializedData, $dataToAdd)

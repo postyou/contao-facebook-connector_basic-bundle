@@ -18,22 +18,22 @@ namespace Postyou\ContaoFacebookConnectorBasicBundle;
 
 class FbCronDispatcher
 {
-    private function getAllPosts()
+    private function getPosts($siteID)
     {
         $fbConnector = FbConnector::getInstance(
                         array(
                             'connectionType' => ConnectionType::POST_GET
                         ));
-        $fbConnector->getPostsFromAllSitesAndSaveInDb();
+        $fbConnector->getPostsFromSiteIdAndSaveInDb($siteID);
     }
 
-    private function getAllGaleries()
+    private function getGaleries($siteID)
     {
         $fbConnector = FbConnector::getInstance(
             array(
                 'connectionType' => ConnectionType::GALLERY_GET
             ));
-        $fbConnector->getGalleryDataFromAllSites();
+        $fbConnector->getGalleryDataFromSiteId($siteID);
     }
 
     public function setMinutelyCronJobs()
@@ -44,12 +44,12 @@ class FbCronDispatcher
             foreach ($facebookSitesModels as $facebookSitesModel) {
                 if ($facebookSitesModel->synchronizePosts == 1 && $facebookSitesModel->autoSyncPosts == 1) {
                     if ($facebookSitesModel->autoSyncPostOptions == 5) {
-                        $this->getAllPosts();
+                        $this->getPosts($facebookSitesModel->id);
                     }
                 }
                 if ($facebookSitesModel->synchronizeGalleries && $facebookSitesModel->autoSyncGalleries == 1) {
                     if ($facebookSitesModel->autoSyncGalleryOptions == 5) {
-                        $this->getAllGaleries();
+                        $this->getGaleries($facebookSitesModel->id);
                     }
                 }
             }
@@ -64,12 +64,12 @@ class FbCronDispatcher
             foreach ($facebookSitesModels as $facebookSitesModel) {
                 if ($facebookSitesModel->synchronizePosts == 1 && $facebookSitesModel->autoSyncPosts == 1) {
                     if ($facebookSitesModel->autoSyncPostOptions == 4) {
-                        $this->getAllPosts();
+                        $this->getPosts($facebookSitesModel->id);
                     }
                 }
                 if ($facebookSitesModel->synchronizeGalleries && $facebookSitesModel->autoSyncGalleries == 1) {
                     if ($facebookSitesModel->autoSyncGalleryOptions == 4) {
-                        $this->getAllGaleries();
+                        $this->getGaleries($facebookSitesModel->id);
                     }
                 }
             }
@@ -84,12 +84,12 @@ class FbCronDispatcher
             foreach ($facebookSitesModels as $facebookSitesModel) {
                 if ($facebookSitesModel->synchronizePosts == 1 && $facebookSitesModel->autoSyncPosts == 1) {
                     if ($facebookSitesModel->autoSyncPostOptions == 3) {
-                        $this->getAllPosts();
+                        $this->getPosts($facebookSitesModel->id);
                     }
                 }
                 if ($facebookSitesModel->synchronizeGalleries && $facebookSitesModel->autoSyncGalleries == 1) {
                     if ($facebookSitesModel->autoSyncGalleryOptions == 3) {
-                        $this->getAllGaleries();
+                        $this->getGaleries($facebookSitesModel->id);
                     }
                 }
             }
@@ -104,12 +104,12 @@ class FbCronDispatcher
             foreach ($facebookSitesModels as $facebookSitesModel) {
                 if ($facebookSitesModel->synchronizePosts == 1 && $facebookSitesModel->autoSyncPosts == 1) {
                     if ($facebookSitesModel->autoSyncPostOptions == 2) {
-                        $this->getAllPosts();
+                        $this->getPosts($facebookSitesModel->id);
                     }
                 }
                 if ($facebookSitesModel->synchronizeGalleries && $facebookSitesModel->autoSyncGalleries == 1) {
                     if ($facebookSitesModel->autoSyncGalleryOptions == 2) {
-                        $this->getAllGaleries();
+                        $this->getGaleries($facebookSitesModel->id);
                     }
                 }
             }
@@ -124,12 +124,12 @@ class FbCronDispatcher
             foreach ($facebookSitesModels as $facebookSitesModel) {
                 if ($facebookSitesModel->synchronizePosts == 1 && $facebookSitesModel->autoSyncPosts == 1) {
                     if ($facebookSitesModel->autoSyncPostOptions == 1) {
-                        $this->getAllPosts();
+                        $this->getPosts($facebookSitesModel->id);
                     }
                 }
                 if ($facebookSitesModel->synchronizeGalleries && $facebookSitesModel->autoSyncGalleries == 1) {
                     if ($facebookSitesModel->autoSyncGalleryOptions == 1) {
-                        $this->getAllGaleries();
+                        $this->getGaleries($facebookSitesModel->id);
                     }
                 }
             }
