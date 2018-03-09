@@ -380,9 +380,9 @@ class FbConnectorPostGet extends FbConnector
         }
 
         if ($isAttachment) {
-            $picturePath = $postFolderPath . '/attachment_' . $attachmentId . $fileType;
+            $picturePath = $postFolderPath . '/attachment_' . $attachmentId . '.' . $fileType;
         } else {
-            $picturePath = $postFolderPath . '/thumbnail' . $fileType;
+            $picturePath = $postFolderPath . '/thumbnail' . '.' . $fileType;
         }
 
         $file = new \File($picturePath);
