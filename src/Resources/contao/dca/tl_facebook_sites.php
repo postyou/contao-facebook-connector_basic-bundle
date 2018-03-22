@@ -546,7 +546,9 @@ class tl_facebook_sites_basic extends \Backend
      */
     public function generateReportMarkup()
     {
-        if (empty($_SESSION['tl_facebook_sites'])) {
+        $session = System::getContainer()->get('session');
+
+        if (empty($session->get('tl_facebook_sites'))) {
             return;
         }
 
@@ -586,71 +588,71 @@ class tl_facebook_sites_basic extends \Backend
 
         $html = '<div class="clr widget" id="synchronizeReport"><h2>Synchronisations &Uuml;berblick:</h2>';
 
-        if ($_SESSION['tl_facebook_sites'][$countText] === 0 ||
-             empty($_SESSION['tl_facebook_sites'][$countText])) {
+        if ($session->get('tl_facebook_sites')[$countText] === 0 ||
+             empty($session->get('tl_facebook_sites')[$countText])) {
             if ($subject === 'Album') {
                 $html .= '<p class="neutral">Es wurden keine Alben ' . $verb . ', da keine neuen oder aktualisierten Inhalte gefunden wurden.</p>';
             } else {
                 $html .= '<p class="neutral">Es wurden keine ' . $subject . 's ' . $verb . ', da keine neuen oder aktualisierten Inhalte gefunden wurden.</p>';
             }
         } else {
-            if ($_SESSION['tl_facebook_sites'][$countText] == 1) {
-                $html .= '<p class="success">Es wurde ' . $_SESSION['tl_facebook_sites'][$countText] .
+            if ($session->get('tl_facebook_sites')[$countText] == 1) {
+                $html .= '<p class="success">Es wurde ' . $session->get('tl_facebook_sites')[$countText] .
                      ' ' . $subject . ' ' . $verb . '.</p>';
             } else {
                 if ($subject === 'Album') {
                     $html .= '<p class="success">Es wurden ' .
-                         $_SESSION['tl_facebook_sites'][$countText] . ' Alben ' . $verb . '.</p>';
+                         $session->get('tl_facebook_sites')[$countText] . ' Alben ' . $verb . '.</p>';
                 } else {
                     $html .= '<p class="success">Es wurden ' .
-                         $_SESSION['tl_facebook_sites'][$countText] . ' ' . $subject . 's ' . $verb .
+                         $session->get('tl_facebook_sites')[$countText] . ' ' . $subject . 's ' . $verb .
                          '.</p>';
                 }
             }
         }
 
         $html .= '<table id="reportTableSuccess" class="reportTable">';
-        if (is_array($_SESSION['tl_facebook_sites'][$contentText])) {
-            foreach ($_SESSION['tl_facebook_sites'][$contentText] as $row) {
+        if (is_array($session->get('tl_facebook_sites')[$contentText])) {
+            foreach ($session->get('tl_facebook_sites')[$contentText] as $row) {
                 $html .= '<tr><td class="success">' . $row . '</td></tr>';
             }
         }
 
         $html .= '</table>';
 
-        if (! empty($_SESSION['tl_facebook_sites'][$rejectedText])) {
+        if (! empty($session->get('tl_facebook_sites')[$rejectedText])) {
             $html .= '<p class="error">Folgende ' . $subject . 's wurden abgewiesen:</p>';
             $html .= '<table id="reportTableError" class="reportTable">';
-            if (is_array($_SESSION['tl_facebook_sites'][$rejectedText])) {
-                foreach ($_SESSION['tl_facebook_sites'][$rejectedText] as $row) {
+            if (is_array($session->get('tl_facebook_sites')[$rejectedText])) {
+                foreach ($session->get('tl_facebook_sites')[$rejectedText] as $row) {
                     $html .= '<tr><td class="error">' . $row . '</td></tr>';
                 }
             }
             $html .= '</table>';
         }
 
-        if (isset($_SESSION['tl_facebook_sites'][$deletedCountText])) {
-            if ($_SESSION['tl_facebook_sites'][$deletedCountText] == 1) {
+        if (isset($session->get('tl_facebook_sites')[$deletedCountText])) {
+            if ($session->get('tl_facebook_sites')[$deletedCountText] == 1) {
                 $html .= '<p class="deleted">Es wurde ' .
-                     $_SESSION['tl_facebook_sites'][$deletedCountText] . ' ' . $subject .
+                     $session->get('tl_facebook_sites')[$deletedCountText] . ' ' . $subject .
                      ' gel&ouml;scht.</p>';
             } else {
                 $html .= '<p class="deleted">Es wurden ' .
-                     $_SESSION['tl_facebook_sites'][$deletedCountText] . ' ' . $subject .
+                     $session->get('tl_facebook_sites')[$deletedCountText] . ' ' . $subject .
                      ' gel&ouml;scht.</p>';
             }
         }
 
         $html .= '</div>';
 
-        if (isset($_SESSION['tl_facebook_sites']['errorMessages'])) {
-            foreach ($_SESSION['tl_facebook_sites']['errorMessages'] as $errorMessage) {
+        if (isset($session->get('tl_facebook_sites')['errorMessages'])) {
+            foreach ($session->get('tl_facebook_sites')['errorMessages'] as $errorMessage) {
                 $html .= '<div class="clr"><h3>Fehlermeldungen:</h3><p class="error">' .
                      $errorMessage . '</p></div>';
             }
         }
 
-        unset($_SESSION['tl_facebook_sites']);
+        $session->remove('tl_facebook_sites');
 
         return $html;
     }

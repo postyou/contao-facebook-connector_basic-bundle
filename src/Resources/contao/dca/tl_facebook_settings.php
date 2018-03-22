@@ -19,7 +19,7 @@ $GLOBALS['TL_DCA']['tl_facebook_settings'] = array(
 
     'palettes' => array(
         '__selector__' => array(),
-        'default' => 'appID, appSecret;'
+        'default' => 'appID, appSecret, facebookApiVersion;'
     ),
     'subpalettes' => array(),
     'fields' => array(
@@ -36,6 +36,24 @@ $GLOBALS['TL_DCA']['tl_facebook_settings'] = array(
         'appSecret' => array(
             'label' => &$GLOBALS['TL_LANG']['tl_facebook_settings']['appSecret'],
             'inputType' => 'text',
+            'eval' => array(
+                'mandatory' => true,
+                'maxlength' => 255,
+                'tl_class' => 'w50'
+            )
+        ),
+        'facebookApiVersion' => array(
+            'label' => &$GLOBALS['TL_LANG']['tl_facebook_settings']['facebookApiVersion'],
+            'inputType' => 'text',
+            'default' => 'v2.12',
+            'load_callback' => array(
+                function($varValue) {
+                    if (empty($varValue)) {
+                        return 'v2.12';
+                    }
+                       return $varValue;
+                }
+            ),
             'eval' => array(
                 'mandatory' => true,
                 'maxlength' => 255,

@@ -33,12 +33,17 @@ $timeStrLookup = array(
                     'minutely' => 'Minutely'
                 );
 
-foreach ($timeStrLookup as $key => $value) {
-    $GLOBALS['TL_CRON'][$key][] = array(
-        'Postyou\ContaoFacebookConnectorBasicBundle\FbCronDispatcher',
-        'set'.$value.'CronJobs'
-    );
-}
+        $GLOBALS['TL_CRON']['minutely'] = array(
+            'Postyou\ContaoFacebookConnectorBasicBundle\FbCronDispatcher',
+            'setMinutelyCronJobs'
+        );
+
+//foreach ($timeStrLookup as $key => $value) {
+//    $GLOBALS['TL_CRON'][$key][] = array(
+//        'Postyou\ContaoFacebookConnectorBasicBundle\FbCronDispatcher',
+//        'set'.$value.'CronJobs'
+//    );
+//}
 
 
 // BE Module
@@ -61,7 +66,7 @@ $GLOBALS['BE_MOD']['Facebook']['Einstellungen'] = array(
 
 $GLOBALS['TL_CTE']['Facebook']['facebook_post_list'] = 'Postyou\ContaoFacebookConnectorBasicBundle\FacebookPostList';
 
-$GLOBALS['TL_CONFIG']['facebookApiVersion'] = 'v2.11';
+$GLOBALS['TL_CONFIG']['facebookApiVersion'] = 'v2.12';
 
 /*
  * Models
