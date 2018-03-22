@@ -13,7 +13,7 @@
  */
 
 
-namespace Postyou\ContaoFacebookConnectorBasicBundle;
+namespace Postyou\ContaoFacebookConnectorBasicBundle\EventListener;
 
 
 class FbCronDispatcher

@@ -35,4 +35,14 @@ class Plugin implements BundlePluginInterface
                             ->setReplace(['contao-facebook-connector_basic']),
         ];
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPackageDependencies()
+    {
+        return [
+            'facebook/graph-sdk'
+        ];
+    }
 }
