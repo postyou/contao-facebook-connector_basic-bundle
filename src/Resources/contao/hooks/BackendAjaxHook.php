@@ -18,6 +18,7 @@ namespace Postyou\ContaoFacebookConnectorBasicBundle;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Contao\CoreBundle\Exception\ResponseException;
 use Symfony\Component\HttpFoundation\Response;
+use Contao\System;
 
 class BackendAjaxHook extends \Backend
 {
