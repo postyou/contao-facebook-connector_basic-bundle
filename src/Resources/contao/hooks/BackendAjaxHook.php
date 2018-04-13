@@ -50,12 +50,17 @@ class BackendAjaxHook extends \Backend
     {
         switch ($strAction) {
             case 'loadPosts':
+
+                $session = System::getContainer()->get('session');
+
                 if (! FbConnectorHelper::isFacebookSitesSession()) {
-                    $_SESSION['tl_facebook_sites'] = array();
+                    $session->set('tl_facebook_sites', array());
                 }
 
-                $_SESSION['tl_facebook_sites']['savedPosts'] = array();
-                $_SESSION['tl_facebook_sites']['savedPostsCount'] = 0;
+                $sites = $session->get('tl_facebook_sites');
+                $sites['savedPosts'] = array();
+                $sites['savedPostsCount'] = 0;
+                $session->set('tl_facebook_sites', $sites);
 
                 $this->loadData(ConnectionType::POST_GET, "getPostsFromSiteIdAndSaveInDb");
 

@@ -20,43 +20,58 @@ class FbConnectorHelper
 {
     public static function isFacebookSitesSession()
     {
-        return ! empty($_SESSION['tl_facebook_sites']);
+        $session = System::getContainer()->get('session');
+        return ! empty($session->get('tl_facebook_sites'));
     }
 
     public static function addRejectedPostMessage($date, $model, $message)
     {
-        $_SESSION['tl_facebook_sites']['rejectedPosts'][] = $date->format(
+        $session = System::getContainer()->get('session');
+        $sites = $session->get('tl_facebook_sites');
+        $sites['rejectedPosts'][] = $date->format(
             $GLOBALS['TL_CONFIG']['datimFormat']) . ' ' .
              ((! empty($model->title)) ? $model->title : $model->headline) . ' - Ursache: ' .
              $message;
+        $session->set('tl_facebook_sites', $sites);
     }
 
     public static function addErrorMessage($exception)
     {
-        $_SESSION['tl_facebook_sites']['errorMessages'][] = $exception->getCode() . ' ' .
+        $session = System::getContainer()->get('session');
+        $sites = $session->get('tl_facebook_sites');
+        $sites['errorMessages'][] = $exception->getCode() . ' ' .
              $exception->getMessage();
+        $session->set('tl_facebook_sites', $sites);
     }
 
     public static function addErrorMessageText($message)
     {
-        $_SESSION['tl_facebook_sites']['errorMessages'][] = $message;
+        $session = System::getContainer()->get('session');
+        $sites = $session->get('tl_facebook_sites');
+        $sites['errorMessages'][] = $message;
+        $session->set('tl_facebook_sites', $sites);
     }
 
     public static function updateSessionValuesForResponse($countName, $textName, $title, $date,
         $wasUpdated)
     {
-        $_SESSION['tl_facebook_sites'][$countName] ++;
+        $session = System::getContainer()->get('session');
+        $sites = $session->get('tl_facebook_sites');
+        $sites[$countName] ++;
+
         $text = $date->format($GLOBALS['TL_CONFIG']['datimFormat']) . ' ' . $title;
 
         \System::loadLanguageFile('tl_facebook_messages');
 
         if ($wasUpdated) {
-            $_SESSION['tl_facebook_sites'][$textName][] = $text . '<em>' .
+            $sites[$textName][] = $text . '<em>' .
                  $GLOBALS['TL_LANG']['tl_facebook_messages']['updated'] . '</em>';
         } else {
-            $_SESSION['tl_facebook_sites'][$textName][] = $text . '<em>' .
+            $sites[$textName][] = $text . '<em>' .
                  $GLOBALS['TL_LANG']['tl_facebook_messages']['created'] . '</em>';
         }
+
+        $session->set('tl_facebook_sites', $sites);
     }
 
     public static function autolink($str, $attributes=array())
