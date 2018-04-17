@@ -20,7 +20,7 @@
         <?php endif; ?>
 
         <?php if ($this->images): ?>
-                <? foreach ($this->images as $index => $image): ?>
+                <?php foreach ($this->images as $index => $image): ?>
                     <?php if ($index === 0): ?>
                         <figure class="image_container float_<?= $this->floatClass; ?>">
                             <a class="cboxElement" href="<?= $image['imagePath'] ?>" data-lightbox="<?='lb'.$this->cssID?>">
@@ -38,7 +38,7 @@
                     <?php else: ?>
                         <a class="cboxElement" style="display:none;" href="<?= $image['imagePath'] ?>" data-lightbox="<?='lb'.$this->cssID?>"></a>
                     <?php endif; ?>
-                <? endforeach; ?>
+                <?php endforeach; ?>
 
         <?php elseif ($this->imageSrcFacebook): ?>
             <?php foreach (unserialize($this->imageSrcFacebook) as $index => $imgSrc): ?>
