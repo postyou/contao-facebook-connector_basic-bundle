@@ -125,7 +125,7 @@ class FbConnectorHelper
     }
 
     public static function getToken() {
-        $container = System::getContainer();
-        return $container->get('contao.csrf.token_manager')->getToken($container->getParameter('contao.csrf_token_name'))->getValue();
+        $container = \System::getContainer();
+        return $container->get('security.csrf.token_manager')->getToken($container->getParameter('contao.csrf_token_name'))->getValue();
     }
 }
