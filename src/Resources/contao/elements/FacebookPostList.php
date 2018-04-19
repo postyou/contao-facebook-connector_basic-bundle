@@ -165,16 +165,16 @@ class FacebookPostList extends \ContentElement
                             $path = \FilesModel::findByUuid($uuid)->path;
                             $tempArray = array();
                             if (!empty($path)) {
-                                if (is_array($size) && (!empty($size[0]))) {
-                                    $pictureFactory =  \System::getContainer()->get('contao.image.picture_factory');
-                                    $picture = $pictureFactory->create('../'.\FilesModel::findByUuid($uuid)->path, $size);
-                                    $picture = array
-                              			(
-                              				'img' => $picture->getImg(TL_ROOT, $staticUrl),
-                              				'sources' => $picture->getSources(TL_ROOT, $staticUrl)
-                              			);
-                                    $tempArray['picture'] = $picture;
-                                }
+                              if (is_array($size) && (!empty($size[0]) || !empty($size[1]) || !empty($size[2]))) {
+                                  $pictureFactory =  \System::getContainer()->get('contao.image.picture_factory');
+                                  $picture = $pictureFactory->create(TL_ROOT . '/'.\FilesModel::findByUuid($uuid)->path, $size);
+                                  $picture = array
+                                  (
+                                    'img' => $picture->getImg(TL_ROOT, $staticUrl),
+                                    'sources' => $picture->getSources(TL_ROOT, $staticUrl)
+                                  );
+                                  $tempArray['picture'] = $picture;
+                              }
                                 $tempArray['imagePath'] = $path;
                             }
 
