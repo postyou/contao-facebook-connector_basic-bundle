@@ -342,7 +342,9 @@ $GLOBALS['TL_DCA']['tl_facebook_sites'] = array(
         'headlineType' => array(
             'label'             => &$GLOBALS['TL_LANG']['tl_facebook_sites']['headlineType'],
             'inputType'         => 'radio',
-            'options'           => array('punctuation' => &$GLOBALS['TL_LANG']['tl_facebook_sites']['punctuationCharacter'] , 'length' => &$GLOBALS['TL_LANG']['tl_facebook_sites']['headlineLength']),
+            'options'           => array('punctuation' => &$GLOBALS['TL_LANG']['tl_facebook_sites']['punctuationCharacter'] ,
+                                          'length' => &$GLOBALS['TL_LANG']['tl_facebook_sites']['headlineLength'],
+                                        'full_text' => &$GLOBALS['TL_LANG']['tl_facebook_sites']['full_text']),
             'eval'              => array(
                                         'mandatory'   => true,
                                         'tl_class' => 'clr ctrl_headlineType w50',

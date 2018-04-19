@@ -186,6 +186,10 @@ class FbConnectorPostGet extends FbConnector
                         $title = $matches[1];
                         $message = $matches[count($matches)-1];
                     }
+                } elseif ($facebookSiteModel->headlineType == 'full_text') {
+                    $matches = $this->getHeadlineAndMessage($searchStr);
+                    $title = $matches[1];
+                    $message = $searchStr;
                 }
 
                 $dateCreated = new \DateTime($post['created_time']);

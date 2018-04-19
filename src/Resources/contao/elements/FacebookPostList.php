@@ -14,6 +14,8 @@
 
 namespace Postyou\ContaoFacebookConnectorBasicBundle;
 
+use Symfony\Component\Filesystem\Filesystem;
+
 class FacebookPostList extends \ContentElement
 {
     protected $strTemplate = 'mod_facebook_posts';
@@ -164,7 +166,13 @@ class FacebookPostList extends \ContentElement
                             $tempArray = array();
                             if (!empty($path)) {
                                 if (is_array($size) && (!empty($size[0]))) {
-                                    $picture = \Picture::create(\FilesModel::findByUuid($uuid)->path, $size)->getTemplateData();
+                                    $pictureFactory =  \System::getContainer()->get('contao.image.picture_factory');
+                                    $picture = $pictureFactory->create('../'.\FilesModel::findByUuid($uuid)->path, $size);
+                                    $picture = array
+                              			(
+                              				'img' => $picture->getImg(TL_ROOT, $staticUrl),
+                              				'sources' => $picture->getSources(TL_ROOT, $staticUrl)
+                              			);
                                     $tempArray['picture'] = $picture;
                                 }
                                 $tempArray['imagePath'] = $path;

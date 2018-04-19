@@ -103,9 +103,12 @@ Legt die &Uuml;berschrift/den Titel des Posts fest.<br><br>
 <u>Satzzeichen:</u><br>
 Alle W&ouml;rter bis zum ersten Satzzeichen des Posts als &Uuml;berschrift verwenden. (erster Satz)<br><br>
 <u>Zeichenl&auml;nge:</u><br>
-Die ersten 70 Zeichen des Posts als &Uuml;berschrift verwenden.';
+Die ersten 70 Zeichen des Posts als &Uuml;berschrift verwenden.<br><br>
+<u>ohne &Uuml;berschrift:</u><br>
+Zeigt kompletten Text. Die ersten 70 Zeichen des Posts werden als &Uuml;berschrift gesetzt, jedoch nicht vom Text separiert.';
 $GLOBALS['TL_LANG']['tl_facebook_sites']['punctuationCharacter'] = 'Satzzeichen';
 $GLOBALS['TL_LANG']['tl_facebook_sites']['headlineLength'] = 'Zeichenl&auml;nge';
+$GLOBALS['TL_LANG']['tl_facebook_sites']['full_text'] = 'ohne &Uuml;berschrift';
 
 // Verschiedenes
 $GLOBALS['TL_LANG']['tl_facebook_sites']['ajaxPopupMessageText'] = "Daten werden synchronisiert";
