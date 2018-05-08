@@ -12,4 +12,4 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0
  */
 
-$GLOBALS['TL_LANG']['CTE']['facebook_post_list'][0] = 'Facebook Posts Auflistung';
+$GLOBALS['TL_LANG']['CTE']['facebook_posts'][0] = 'Facebook Posts Auflistung';

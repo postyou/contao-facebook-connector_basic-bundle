@@ -12,7 +12,7 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0
  */
 
-$GLOBALS['TL_DCA']['tl_content']['palettes']['facebook_post_list'] = '{type_legend},type,headline,headlineOptn,facebookSites,perPage,sizeFacebook,maxPosts,messageLength, showFacebookLinkAlways, removeHashTag';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['facebook_posts'] = '{type_legend},type,headline,headlineOptn,facebookSites,perPage,sizeFacebook,maxPosts,messageLength,showFacebookLinkAlways,removeHashTag;{template_legend:hide},customTpl;{expert_legend:hide},cssID;';
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['facebookSites'] = array(
     'label' => &$GLOBALS['TL_LANG']['tl_content']['facebookSites'],

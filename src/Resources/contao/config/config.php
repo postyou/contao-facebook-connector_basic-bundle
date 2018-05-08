@@ -60,7 +60,7 @@ $GLOBALS['BE_MOD']['Facebook']['Einstellungen'] = array(
     'icon' => 'bundles/postyoucontaofacebookconnectorbasic/img/world_edit.png'
 );
 
-$GLOBALS['TL_CTE']['Facebook']['facebook_post_list'] = 'Postyou\ContaoFacebookConnectorBasicBundle\FacebookPostList';
+$GLOBALS['TL_CTE']['Facebook']['facebook_posts'] = 'Postyou\ContaoFacebookConnectorBasicBundle\FacebookPostList';
 
 $GLOBALS['TL_CONFIG']['facebookApiVersion'] = 'v2.12';
 

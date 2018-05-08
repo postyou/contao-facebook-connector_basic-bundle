@@ -24,6 +24,7 @@ class FacebookPostList extends \ContentElement
     {
         $GLOBALS['TL_JAVASCRIPT']['video'] = 'bundles/postyoucontaofacebookconnectorbasic/js/video.js';
         parent::__construct($objModule, $strColumn);
+        $this->strTemplate = 'mod_facebook_posts';
     }
 
     public function generate()
@@ -58,7 +59,11 @@ class FacebookPostList extends \ContentElement
                     'pid IN (' . implode(',', $siteIds) . ') AND published = "1"'
                 ), null, array('order' => 'created_time DESC', 'limit' => $this->maxPosts));
 
-            $objTemplate = new \FrontendTemplate('ce_facebook_posts');
+            if ($this->customTpl != '' && TL_MODE == 'FE') {
+                $objTemplate = new \FrontendTemplate($this->customTpl);
+            } else {
+                $objTemplate = new \FrontendTemplate('ce_facebook_posts');
+            }
 
             $total = count($postModels);
 
@@ -200,7 +205,9 @@ class FacebookPostList extends \ContentElement
                 $objTemplate->videoThumb = $postModels->current()->videoThumb;
                 $objTemplate->size = unserialize($this->size);
 
+
                 $cssID = 'facebook-post-' . $count;
+
                 $objTemplate->cssID = $cssID;
 
                 $objTemplate->class = 'facebook-post block ' . ((++ $count == 1) ? ' first' : '') .
