@@ -34,7 +34,9 @@ $timeStrLookup = array(
                 );
 
 foreach ($timeStrLookup as $key => $value) {
+
     $GLOBALS['TL_CRON'][$key][] = ['postyou_contao_facebook.listener.load_posts', 'set'.$value.'CronJobs'];
+      var_dump($GLOBALS['TL_CRON'][$key]);
 }
 
 
