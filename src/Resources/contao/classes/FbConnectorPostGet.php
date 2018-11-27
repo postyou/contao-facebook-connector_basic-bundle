@@ -379,7 +379,13 @@ class FbConnectorPostGet extends FbConnector
 
         $fileType = $this->getFileTypeFromUrl($imageSrc);
 
-        if (empty($fileType)) {
+        if (!in_array($fileType, array(IMAGETYPE_PNG,
+        IMAGETYPE_JPEG,
+        IMAGETYPE_GIF,
+        IMAGETYPE_BMP,
+        IMAGETYPE_IFF,
+        IMAGETYPE_WBMP,
+        IMAGETYPE_WEBP)) || empty($fileType)) {
           return;
         }
 
@@ -454,6 +460,7 @@ class FbConnectorPostGet extends FbConnector
 
     private function getFileTypeFromUrl($imageSrc)
     {
+        $imageSrc = substr($imageSrc, 0, strpos($imageSrc, '?'));
         $filteredStr = substr($imageSrc, strrpos($imageSrc, '.') + 1);
         $fileType = '';
         for ($i = 0; $i < strlen($filteredStr); $i++) {
