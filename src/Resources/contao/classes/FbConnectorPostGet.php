@@ -23,12 +23,12 @@ class FbConnectorPostGet extends FbConnector
     private $fields = array(
         'message',
         'updated_time',
-        'type',
+//        'type',
         'icon',
         'created_time',
         'full_picture',
-        'link',
-        'source',
+//        'link',
+//        'source',
         'attachments',
         'permalink_url'
     );
@@ -159,8 +159,7 @@ class FbConnectorPostGet extends FbConnector
                 $title;
                 $message;
                 $searchStr;
-
-                switch ($post['type']) {
+                switch ($post['attachments']['data'][0]['media_type']) {
                   case 'link':
                   case 'video':
                       $searchStr = $post['message'] ?: $post['attachments']['data'][0]['description'];
@@ -198,7 +197,7 @@ class FbConnectorPostGet extends FbConnector
                     'title' => $title,
                     'message' => $message,
                     'icon' => $post['icon'],
-                    'facebookPostType' => $post['type'],
+                    'facebookPostType' => $post['attachments']['data'][0]['media_type'],
                     'dateCreated' => $dateCreated->getTimestamp(),
                     'dateUpdated' => $date->getTimestamp()
                 );
@@ -207,7 +206,7 @@ class FbConnectorPostGet extends FbConnector
 
 
 
-                if ($post['type'] == 'photo') {
+                if ($post['attachments']['data'][0]['media_type'] == 'photo') {
                     $model->facebookLink = $post['attachments']['data'][0]['url'];
                 } else {
                     $model->facebookLink = $post['permalink_url'];
@@ -215,9 +214,9 @@ class FbConnectorPostGet extends FbConnector
 
                 $model->tstamp = $date->getTimestamp();
 
-                if ($post['type'] == 'video') {
+                if ($post['attachments']['data'][0]['media_type'] == 'video') {
                     $key;
-                    if (! empty($post['source'])) {
+                    if (! empty($post['attachments']['data'][0]['media_source'])) {
                         $key = 'source';
                     } else {
                         $key = 'link';
@@ -229,7 +228,7 @@ class FbConnectorPostGet extends FbConnector
 
                     $hasVideoId = true;
                     if (strpos($post[$key], 'youtube')) {
-                        $pos = strpos($post['source'], 'embed/') + 6;
+                        $pos = strpos($post['attachments']['data'][0]['media_source'], 'embed/') + 6;
                         $model->videoClass = 'youtube';
                     } elseif (strpos($post[$key], 'vimeo')) {
                         $pos = strrpos($post[$key], '/') + 1;
@@ -258,7 +257,7 @@ class FbConnectorPostGet extends FbConnector
                 $model = $model->save();
 
                 // Bild von externem Link
-                if (! empty($post['full_picture']) && $post['type'] === 'link' && $post['attachments']['data'][0]['type'] !== 'multi_share') {
+                if (! empty($post['full_picture']) && $post['attachments']['data'][0]['media_type'] === 'link' && $post['attachments']['data'][0]['type'] !== 'multi_share') {
                     if (strpos($post['full_picture'], '://external')) {
                         $queryArr = $this->getQueryArr($post['full_picture']);
                     }
@@ -442,9 +441,8 @@ class FbConnectorPostGet extends FbConnector
     private function isUsefulFacebookPost($post)
     {
         if ((empty($post['message']) && empty($post['attachments']))
-          || ($post['type'] === 'event' && empty($post['message']))
-          || ($post['type'] === 'link' && empty($post['message']) && empty($post['attachments']['data'][0]['description']))
-        || ($post['type'] === 'photo' && ($post['attachments']['data'][0]['type'] == 'cover_photo' || ($post['attachments']['data'][0]['type'] == 'profile_media')) && empty($post['message']))) {
+          || ($post['attachments']['data'][0]['media_type'] === 'event' && empty($post['message']))
+        || ($post['attachments']['data'][0]['media_type'] === 'photo' && ($post['attachments']['data'][0]['type'] == 'cover_photo' || ($post['attachments']['data'][0]['type'] == 'profile_media')) && empty($post['message']))) {
             return false;
         }
 

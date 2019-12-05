@@ -19,7 +19,7 @@ $GLOBALS['TL_DCA']['tl_facebook_settings'] = array(
 
     'palettes' => array(
         '__selector__' => array(),
-        'default' => 'appID, appSecret, facebookApiVersion;'
+        'default' => 'appID, appSecret, userAccessToken, facebookApiVersion;'
     ),
     'subpalettes' => array(),
     'fields' => array(
@@ -58,6 +58,15 @@ $GLOBALS['TL_DCA']['tl_facebook_settings'] = array(
                 'mandatory' => true,
                 'maxlength' => 255,
                 'tl_class' => 'w50'
+            )
+        ),
+        'userAccessToken' => array(
+            'label' => &$GLOBALS['TL_LANG']['tl_facebook_settings']['userAccessToken'],
+            'inputType' => 'text',
+            'eval' => array(
+                'mandatory' => true,
+                'maxlength' => 255,
+                'tl_class' => 'clr'
             )
         )
     )

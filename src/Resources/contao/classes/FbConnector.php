@@ -41,6 +41,7 @@ class FbConnector
             'version' => \Config::get('facebookApiVersion'),
             'appID' => \Config::get('appID'),
             'appSecret' => \Config::get('appSecret'),
+            'userAccessToken' => \Config::get('userAccessToken'),
             'connectionType' => ConnectionType::POST_GET
         );
 
@@ -96,7 +97,8 @@ class FbConnector
     public function getAccessTokenQuery()
     {
         try {
-            return 'access_token=' . $this->getAppID() . '|' . $this->getAppSecret();
+            //return 'access_token=' . $this->getAppID() . '|' . $this->getAppSecret();
+            return 'access_token=' . $this->arrConfig['userAccessToken'];
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
